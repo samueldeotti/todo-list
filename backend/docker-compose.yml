@@ -5,6 +5,6 @@ services:
     restart: always
     ports:
       #      ALTERAR A PORTA PARA NÃO CONFLITAR COM OUTROS SERVIÇOS
-      - 3307:3307
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
