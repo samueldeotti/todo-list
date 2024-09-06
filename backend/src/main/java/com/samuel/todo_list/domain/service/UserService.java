@@ -40,13 +40,10 @@ public class UserService implements UserDetailsService {
     return this.userRepository.save(user);
   }
 
-
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return userRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException(username));
   }
-
-
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,6 @@ public class TaskController {
   public ResponseEntity<List<TaskDto>> getAllTasksByUser(@PathVariable Long userId) {
 
     List<Task> tasks = this.tasksService.findAllByUser(userId);
-
     return ResponseEntity.ok(tasks.stream().map(TaskDto::fromEntity).toList());
   }
 
@@ -40,9 +40,6 @@ public class TaskController {
 
   @PostMapping("create/{userId}")
   public ResponseEntity<TaskDto> createTask(@PathVariable Long userId, @RequestBody @Valid Task task) {
-//    Task newTask = this.tasksService.save(userId, task);
-
-//    System.out.println(newTask);
     return ResponseEntity.status(201).body(TaskDto.fromEntity(this.tasksService.save(userId, task)));
   }
 
@@ -51,7 +48,7 @@ public class TaskController {
     return ResponseEntity.ok(TaskDto.fromEntity(this.tasksService.update(id, task)));
   }
 
-  @PatchMapping("/delete/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
     this.tasksService.deleteById(id);
     return ResponseEntity.noContent().build();
