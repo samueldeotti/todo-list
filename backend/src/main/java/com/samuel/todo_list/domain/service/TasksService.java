@@ -25,8 +25,13 @@ public class TasksService {
     return taskRepository.findById(id).orElse(null);
   }
 
-  public Task save(Task task) {
-    User user = userRepositoy.findById(task.getUser().getId()).orElse(null);
+  public Task save(Long userId, Task task) {
+    User user = userRepositoy.findById(userId).orElse(null);
+
+    if (user == null) {
+      return null;
+    }
+
     return taskRepository.save(task);
   }
 
