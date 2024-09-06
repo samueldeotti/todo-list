@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.AccessLevel;
@@ -43,7 +42,7 @@ public class User implements UserDetails {
   private String password;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<Task> tasks = new ArrayList<>();
+  private List<Task> tasks;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

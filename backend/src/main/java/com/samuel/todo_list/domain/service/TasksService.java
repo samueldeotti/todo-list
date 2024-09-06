@@ -36,13 +36,15 @@ public class TasksService {
   }
 
   public Task save(Long userId, Task task) throws UserNotFoundException {
-    userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
 
+    User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+
+    task.setUser(user);
     return taskRepository.save(task);
   }
 
-  public Task update(Task task) throws TaskNotFoundException {
-    Task taskToUpdate = taskRepository.findById(task.getId()).orElseThrow(TaskNotFoundException::new);
+  public Task update(Long taskId, Task task) throws TaskNotFoundException {
+    Task taskToUpdate = taskRepository.findById(taskId).orElseThrow(TaskNotFoundException::new);
 
     taskToUpdate.setTitle(task.getTitle());
     taskToUpdate.setDescription(task.getDescription());
@@ -52,7 +54,7 @@ public class TasksService {
   }
 
   public void deleteById(Long id) throws TaskNotFoundException {
-    Task task = taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+    taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
 
     taskRepository.deleteById(id);
   }
