@@ -1,4 +1,4 @@
-package com.samuel.todo_list.exceptions;
+package com.samuel.todo_list.domain.service.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,6 +13,6 @@ public class UnauthorizedUserException extends RuntimeException {
    * Instantiates a new Unauthorized user exception.
    */
   public UnauthorizedUserException() {
-    super("Unauthorized User");
+    super("Invalid Credentials");
   }
 }

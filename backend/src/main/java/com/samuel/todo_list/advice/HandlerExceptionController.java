@@ -1,9 +1,9 @@
 package com.samuel.todo_list.advice;
 
-import com.samuel.todo_list.exceptions.TaskNotFoundException;
-import com.samuel.todo_list.exceptions.UnauthorizedUserException;
-import com.samuel.todo_list.exceptions.UserNotFoundException;
-import com.samuel.todo_list.exceptions.UsernameInUseException;
+import com.samuel.todo_list.domain.service.exceptions.TaskNotFoundException;
+import com.samuel.todo_list.domain.service.exceptions.UnauthorizedUserException;
+import com.samuel.todo_list.domain.service.exceptions.UserNotFoundException;
+import com.samuel.todo_list.domain.service.exceptions.UsernameInUseException;
 import java.security.InvalidParameterException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

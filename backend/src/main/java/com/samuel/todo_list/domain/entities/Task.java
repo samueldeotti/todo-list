@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,12 +26,15 @@ public class Task {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotEmpty(message = "Title is required")
   @Column(name = "title", nullable = false)
   private String title;
 
+  @NotEmpty(message = "description is required")
   @Column(name = "description", nullable = false)
   private String description;
 
+  @NotEmpty(message = "status is required")
   @Column(name = "status", nullable = false)
   private String status;
 

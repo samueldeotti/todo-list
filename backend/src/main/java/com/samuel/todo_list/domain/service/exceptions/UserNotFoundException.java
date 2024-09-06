@@ -1,4 +1,4 @@
-package com.samuel.todo_list.exceptions;
+package com.samuel.todo_list.domain.service.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
