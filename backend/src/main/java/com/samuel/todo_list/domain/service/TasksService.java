@@ -3,8 +3,11 @@ package com.samuel.todo_list.domain.service;
 import com.samuel.todo_list.domain.entities.Task;
 import com.samuel.todo_list.domain.entities.User;
 import com.samuel.todo_list.domain.repository.TaskRepository;
-import com.samuel.todo_list.domain.repository.UserRepositoy;
+import com.samuel.todo_list.domain.repository.UserRepository;
+import com.samuel.todo_list.exceptions.TaskNotFoundException;
+import com.samuel.todo_list.exceptions.UserNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,32 +18,31 @@ import org.springframework.stereotype.Service;
 public class TasksService {
 
   private final TaskRepository taskRepository;
-  private final UserRepositoy userRepositoy;
+  private final UserRepository userRepository;
 
-  public List<Task> findAllByUser(Long userId) {
+  public List<Task> findAllByUser(Long userId) throws UserNotFoundException {
+
+    Optional<User> user = userRepository.findById(userId);
+
+    if (user.isEmpty()) {
+      throw new UserNotFoundException();
+    }
+
     return taskRepository.findAllByUserId(userId);
   }
 
-  public Task findById(Long id) {
-    return taskRepository.findById(id).orElse(null);
+  public Task findById(Long id) throws TaskNotFoundException {
+    return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
   }
 
-  public Task save(Long userId, Task task) {
-    User user = userRepositoy.findById(userId).orElse(null);
-
-    if (user == null) {
-      return null;
-    }
+  public Task save(Long userId, Task task) throws UserNotFoundException {
+    userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
 
     return taskRepository.save(task);
   }
 
-  public Task update(Task task) {
-    Task taskToUpdate = taskRepository.findById(task.getId()).orElse(null);
-
-    if (taskToUpdate == null) {
-      return null;
-    }
+  public Task update(Task task) throws TaskNotFoundException {
+    Task taskToUpdate = taskRepository.findById(task.getId()).orElseThrow(TaskNotFoundException::new);
 
     taskToUpdate.setTitle(task.getTitle());
     taskToUpdate.setDescription(task.getDescription());
@@ -49,12 +51,8 @@ public class TasksService {
     return taskRepository.save(taskToUpdate);
   }
 
-  public void deleteById(Long id) {
-    Task task = taskRepository.findById(id).orElse(null);
-
-    if (task == null) {
-      return;
-    }
+  public void deleteById(Long id) throws TaskNotFoundException {
+    Task task = taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
 
     taskRepository.deleteById(id);
   }
