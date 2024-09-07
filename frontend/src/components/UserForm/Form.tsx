@@ -8,13 +8,13 @@ interface FormProps {
 }
 
 export interface UserData {
-  name: string;
+  username: string;
   password: string;
 }
 
 export default function Form({ loading, handleSubmit, isSignup = false }: FormProps) {
   const initialUserData = {
-    name: '',
+    username: '',
     password: '',
   };
 
@@ -36,8 +36,8 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
       <Input
         verifyValue={ verifyName }
         type="text"
-        value={ userData.name }
-        name="name"
+        value={ userData.username }
+        name="username"
         onChange={ handleChange }
       >
         Usuário
@@ -55,9 +55,11 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
       <button
         type="submit"
         disabled={ loading || !verifyPassword(userData.password)
-          || (isSignup && !verifyName(userData.name)) }
-        className={ `p-6 bg-zinc-900 text-white hover:bg-zinc-900/90 
-          transition mb-4 rounded-lg ${loading && 'cursor-not-allowed'} md:text-lg` }
+          || (isSignup && !verifyName(userData.username)) }
+        className={ `p-6 bg-zinc-900 text-white hover:bg-zinc-900/90
+          transition disabled:cursor-not-allowed
+           disabled:bg-zinc-700 mb-4 rounded-lg 
+           ${loading && 'cursor-not-allowed'} md:text-lg` }
       >
         {loading && 'carregando'}
         {isSignup ? 'Criar conta' : 'Entrar'}

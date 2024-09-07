@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Form from './Form';
 
 export interface UserData {
-  name: string;
+  username: string;
   password: string;
 }
 
