@@ -1,10 +1,24 @@
 services:
-
-  mysql:
-    image: mysql:8.0.32
+  application:
+    container_name: app
+    build: .
     restart: always
     ports:
-      #      ALTERAR A PORTA PARA NÃO CONFLITAR COM OUTROS SERVIÇOS
-      - 3306:3306
+      - "8080:8080"
+    links:
+      - database
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - DATABASE_HOST=database
+      - DATABASE_PORT=3306
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+    depends_on:
+      - database
+  database:
+    container_name: db
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
