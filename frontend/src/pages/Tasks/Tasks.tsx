@@ -39,7 +39,7 @@ export default function Tasks() {
       }
     };
     getTasks();
-  }, []);
+  }, [user]);
 
   const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
