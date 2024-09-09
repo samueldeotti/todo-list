@@ -34,13 +34,14 @@ export function SignUp() {
         toast.success('Conta criada com sucesso!');
       }, 1001);
       setTimeout(() => {
-        navigate('/signup');
+        navigate('/signin');
       }, 1500);
     } catch (error: any) {
       setTimeout(() => {
-        if (error.response.status === 409) {
-          toast.error('Ja existem alguem com esse usuário!');
-        }
+        // if (error.response.status === 409) {
+        //   toast.error('Ja existem alguem com esse usuário!');
+        // }
+        console.log(error);
         toast.error('Algo deu errado!');
       }, 1001);
     } finally {

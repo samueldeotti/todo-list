@@ -9,6 +9,8 @@ const useAuth = () => {
 
   useEffect(() => {
     const checkAuthStatus = async () => {
+      console.log('Checking auth status');
+
       try {
         const token = localStorage.getItem('token');
 
@@ -16,8 +18,6 @@ const useAuth = () => {
           setIsAuthenticated(false);
           return;
         }
-
-        console.log(token);
 
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
@@ -35,10 +35,11 @@ const useAuth = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         setIsAuthenticated(false);
+        api.defaults.headers.common.Authorization = '';
         toast.error('Sessão expirada, faça login novamente');
 
+        navigate('/signin');
         setTimeout(() => {
-          navigate('/signin');
           toast.dismiss();
         }, 1000);
       }

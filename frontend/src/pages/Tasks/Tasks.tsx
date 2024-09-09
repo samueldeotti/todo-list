@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
@@ -8,10 +9,13 @@ type UserType = {
   username: string;
 };
 
+type StatusType = 'not started' | 'in progress' | 'completed';
+
 type TaskType = {
   id: string;
   title: string;
   description: string;
+  status: StatusType;
   user: UserType;
 };
 
@@ -39,7 +43,7 @@ export default function Tasks() {
       }
     };
     getTasks();
-  }, [user]);
+  }, []);
 
   const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +51,7 @@ export default function Tasks() {
       const task = {
         title,
         description,
-        status: 'pending',
+        status: 'not started',
       };
       const { data } = await api.post(`tasks/create/${user.id}`, task);
       setTasks([...tasks, data]);
@@ -83,13 +87,48 @@ export default function Tasks() {
             <button type="submit">Add</button>
           </form>
           <div>
-
-            {tasks.map((task) => (
-              <div key={ task.id }>
-                <h2>{task.title}</h2>
-                <p>{task.description}</p>
+            <div>
+              <h2>To do</h2>
+              <div>
+                {tasks.filter((task) => task.status === 'not started').map((task) => (
+                  <div key={ task.id }>
+                    <h2>{task.title}</h2>
+                    <p>{task.description}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div>
+              <h2>In progress</h2>
+              <div>
+                {tasks.filter((task) => task.status === 'in progress').map((task) => (
+                  <div key={ task.id }>
+                    <h2>{task.title}</h2>
+                    <p>{task.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2>Completed</h2>
+              <div>
+                {tasks.filter((task) => task.status === 'completed').map((task) => (
+                  <div key={ task.id }>
+                    <h2>{task.title}</h2>
+                    <p>{task.description}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            <div>
+              <h2>{tasks[0]?.title}</h2>
+              <p>{tasks[0]?.description}</p>
+              <p>{tasks[0]?.status}</p>
+            </div>
+
           </div>
         </div>
       </div>
