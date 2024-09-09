@@ -88,11 +88,29 @@ export default function Tasks() {
     }
   };
 
+  const handleDeleteAllTasks = async (param?: string) => {
+    try {
+      await api.delete(`tasks/delete/user-tasks/${user.id}${`?status=${param?.replace(' ', '+')}`}`);
+      setTasks((prevTasks) => (param
+        ? prevTasks.filter((task) => task.status !== param) : []));
+      toast.success('All tasks deleted');
+    } catch (error) {
+      console.error(error);
+      toast.error('Error deleting all tasks');
+    }
+  };
+
   return (
     <div className="w-full h-[100vh] bg-black text-white">
 
       <div>
         <h1>All tasks</h1>
+        <button
+          onClick={ () => handleDeleteAllTasks() }
+        >
+          <Trash />
+          Delete all tasks
+        </button>
         <div>
           <form action="" onSubmit={ handleAddTask }>
             <input
@@ -115,6 +133,12 @@ export default function Tasks() {
             <div>
               <h2>To do</h2>
               <div>
+                <button
+                  onClick={ () => handleDeleteAllTasks('not started') }
+                >
+                  <Trash />
+                  aaaaaaaaaaaa
+                </button>
                 {tasks.filter((task) => task.status === 'not started').map((task) => (
                   <div key={ task.id }>
                     <h2>{task.title}</h2>
@@ -135,6 +159,12 @@ export default function Tasks() {
             </div>
             <div>
               <h2>In progress</h2>
+              <button
+                onClick={ () => handleDeleteAllTasks('in progress') }
+              >
+                <Trash />
+                aaaaaaaaaaaa
+              </button>
               <div>
                 {tasks.filter((task) => task.status === 'in progress').map((task) => (
                   <div key={ task.id }>
@@ -147,6 +177,12 @@ export default function Tasks() {
 
             <div>
               <h2>Completed</h2>
+              <button
+                onClick={ () => handleDeleteAllTasks('completed') }
+              >
+                <Trash />
+                aaaaaaaaaaaa
+              </button>
               <div>
                 {tasks.filter((task) => task.status === 'completed').map((task) => (
                   <div key={ task.id }>
