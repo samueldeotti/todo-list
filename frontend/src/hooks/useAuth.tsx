@@ -34,8 +34,8 @@ const useAuth = () => {
       } catch (err) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        setIsAuthenticated(false);
         api.defaults.headers.common.Authorization = '';
+        setIsAuthenticated(false);
         toast.error('Sessão expirada, faça login novamente');
 
         navigate('/signin');
