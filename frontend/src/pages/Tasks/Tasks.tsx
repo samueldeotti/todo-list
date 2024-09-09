@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Trash, X } from 'lucide-react';
 import { api } from '../../utils/apiService';
 import useAuth from '../../hooks/useAuth';
 
@@ -63,6 +64,30 @@ export default function Tasks() {
     }
   };
 
+  const handleDeleteTask = async (id: string) => {
+    try {
+      await api.delete(`tasks/delete/${id}`);
+      setTasks(tasks.filter((task) => task.id !== id));
+      toast.success('Task deleted');
+    } catch (error) {
+      console.error(error);
+      toast.error('Error deleting task');
+    }
+  };
+
+  const handleChangeStatus = async (newTask: TaskType, newStatus: StatusType) => {
+    try {
+      await api.patch(`tasks/update/${newTask.id}`, { ...newTask, status: newStatus });
+
+      setTasks((prevTasks) => prevTasks
+        .map((task) => (task.id === newTask.id ? { ...task, status: newStatus } : task)));
+      toast.success('Task status updated');
+    } catch (error) {
+      console.error(error);
+      toast.error('Error updating task status');
+    }
+  };
+
   return (
     <div className="w-full h-[100vh] bg-black text-white">
 
@@ -94,6 +119,16 @@ export default function Tasks() {
                   <div key={ task.id }>
                     <h2>{task.title}</h2>
                     <p>{task.description}</p>
+                    <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
+                    <select
+                      value={ task.status }
+                      onChange={ (e) => handleChangeStatus(task, e.target.value as StatusType) }
+                      className="bg-gray-800 text-white"
+                    >
+                      <option value="not started">Not Started</option>
+                      <option value="in progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </select>
                   </div>
                 ))}
               </div>
