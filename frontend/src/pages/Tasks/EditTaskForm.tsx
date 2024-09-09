@@ -8,15 +8,15 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
   setTasks: React.Dispatch<React.SetStateAction<TaskType[]>> }) {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
+  const [status, setStatus] = useState(task.status);
 
   const handleEditTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await api.patch(`tasks/update/${task.id}`, { ...task, title, description });
+      await api.patch(`tasks/update/${task.id}`, { ...task, title, description, status });
       setIsEditing(false);
       setTasks((prevTasks) => prevTasks
-        .map((t) => (t.id === task.id ? { ...t, title, description,
-        } : t)));
+        .map((t) => (t.id === task.id ? { ...t, title, description, status } : t)));
 
       toast.success('Task updated');
     } catch (error) {
@@ -41,6 +41,11 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
         value={ description }
         onChange={ (e) => setDescription(e.target.value) }
       />
+      <select className="bg-gray-800 text-white" onChange={ (e) => setStatus(e.target.value) } defaultValue={ task.status }>
+        <option value="not started">Not Started</option>
+        <option value="in progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
       <button type="submit">Add</button>
     </form>
   );
