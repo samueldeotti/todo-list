@@ -12,8 +12,6 @@ const useAuth = () => {
     let isMounted = true;
 
     const checkAuthStatus = async () => {
-      console.log('Checking auth status');
-
       try {
         const token = localStorage.getItem('token');
 
@@ -42,7 +40,7 @@ const useAuth = () => {
           localStorage.removeItem('user');
           delete api.defaults.headers.common.Authorization;
           setIsAuthenticated(false);
-          toast.error('Sessão expirada, faça login novamente');
+          toast.error('Session expired, please login again');
         }
 
         setTimeout(() => {

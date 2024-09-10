@@ -47,7 +47,7 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
         <TaskStatusInput status={ task.status } setStatus={ setStatus } />
         <button
           type="submit"
-          className="w-1/2 text-whitebg-slate-900
+          className="w-1/2 text-white bg-slate-900
           rounded-md p-2 up font-bold disabled:cursor-not-allowed"
         >
           Change

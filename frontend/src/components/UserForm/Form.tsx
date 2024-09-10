@@ -44,7 +44,7 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
         name="username"
         onChange={ handleChange }
       >
-        Usuário
+        Username
       </Input>
       <Input
         verifyValue={ verifyPassword }
@@ -53,7 +53,7 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
         name="password"
         onChange={ handleChange }
       >
-        Senha
+        Password
       </Input>
 
       <button
@@ -67,7 +67,7 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
       >
         {
             loading ? <Loader2 className="animate-spin mr-2 w-full" size={ 24 } />
-              : isSignup ? 'Criar conta' : 'Entrar'
+              : isSignup ? 'Create account' : 'Log in'
           }
       </button>
     </form>

@@ -25,18 +25,18 @@ export function SignUp() {
       await api.post('/users/create', { ...userData });
 
       setTimeout(() => {
-        toast.success('Conta criada com sucesso!');
+        toast.success('Account created successfully!');
       }, 1001);
       setTimeout(() => {
         navigate('/signin');
       }, 1500);
     } catch (error: any) {
       setTimeout(() => {
-        // if (error.response.status === 409) {
-        //   toast.error('Ja existem alguem com esse usuário!');
-        // }
+        if (error.response.status === 409) {
+          toast.error('Username already exists!');
+        }
         console.log(error);
-        toast.error('Algo deu errado!');
+        toast.error('Something went wrong!');
       }, 1001);
     } finally {
       setTimeout(() => {
