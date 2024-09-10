@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
-import { TaskType } from './Tasks';
+import { StatusType, TaskType } from './Tasks';
 
 export default function EditTaskForm({ task, setIsEditing, setTasks }
 : { task: TaskType, setIsEditing: React.Dispatch<React.SetStateAction<boolean>>,
@@ -41,7 +41,10 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
         value={ description }
         onChange={ (e) => setDescription(e.target.value) }
       />
-      <select className="bg-gray-800 text-white" onChange={ (e) => setStatus(e.target.value) } defaultValue={ task.status }>
+      <select
+        onChange={ (e) => setStatus(e.target.value as StatusType) }
+        defaultValue={ task.status }
+      >
         <option value="not started">Not Started</option>
         <option value="in progress">In Progress</option>
         <option value="completed">Completed</option>

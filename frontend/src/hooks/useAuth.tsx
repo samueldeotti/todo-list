@@ -16,6 +16,7 @@ const useAuth = () => {
 
         if (!token) {
           setIsAuthenticated(false);
+          localStorage.removeItem('user');
           return;
         }
 
