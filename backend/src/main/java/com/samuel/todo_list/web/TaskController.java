@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -28,7 +29,6 @@ public class TaskController {
 
   @GetMapping("/user/{userId}")
   public ResponseEntity<List<TaskDto>> getAllTasksByUser(@PathVariable Long userId) {
-
     List<Task> tasks = this.tasksService.findAllByUser(userId);
     return ResponseEntity.ok(tasks.stream().map(TaskDto::fromEntity).toList());
   }
@@ -53,5 +53,18 @@ public class TaskController {
     this.tasksService.deleteById(id);
     return ResponseEntity.noContent().build();
   }
+
+  @DeleteMapping("delete/user-tasks/{userId}")
+  public ResponseEntity<Void> deleteTasksByUserAndStatus(
+      @PathVariable Long userId,
+      @RequestParam(value = "status", required = false) String status) {
+    if (status == null) {
+      this.tasksService.deleteAllByUser(userId);
+    } else {
+      this.tasksService.deleteByUserAndStatus(userId, status);
+    }
+    return ResponseEntity.noContent().build();
+  }
+
 
 }

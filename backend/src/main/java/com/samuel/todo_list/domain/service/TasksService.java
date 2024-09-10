@@ -18,17 +18,13 @@ import org.springframework.stereotype.Service;
 public class TasksService {
 
   private final TaskRepository taskRepository;
-  private final UserRepository userRepository;
+  private final UserService userService;
 
   public List<Task> findAllByUser(Long userId) throws UserNotFoundException {
 
-    Optional<User> user = userRepository.findById(userId);
+    User user = userService.getUserById(userId);
 
-    if (user.isEmpty()) {
-      throw new UserNotFoundException();
-    }
-
-    return taskRepository.findAllByUserId(userId);
+    return taskRepository.findAllByUser(user);
   }
 
   public Task findById(Long id) throws TaskNotFoundException {
@@ -37,7 +33,7 @@ public class TasksService {
 
   public Task save(Long userId, Task task) throws UserNotFoundException {
 
-    User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+    User user = userService.getUserById(userId);
 
     task.setUser(user);
     return taskRepository.save(task);
@@ -57,5 +53,15 @@ public class TasksService {
     taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
 
     taskRepository.deleteById(id);
+  }
+
+  public void deleteAllByUser(Long userId) throws UserNotFoundException {
+    User user = userService.getUserById(userId);
+    taskRepository.deleteAllByUser(user);
+  }
+
+  public void deleteByUserAndStatus(Long userId, String status) throws UserNotFoundException {
+    User user = userService.getUserById(userId);
+    taskRepository.deleteByUserAndStatus(user, status);
   }
 }
