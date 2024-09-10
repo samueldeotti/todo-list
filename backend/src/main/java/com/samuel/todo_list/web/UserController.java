@@ -2,6 +2,7 @@ package com.samuel.todo_list.web;
 
 import com.samuel.todo_list.domain.entities.User;
 import com.samuel.todo_list.domain.service.UserService;
+import com.samuel.todo_list.swaggerInterfaces.UserSwagger;
 import com.samuel.todo_list.web.dto.UserDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements UserSwagger {
 
   private final UserService userService;
 

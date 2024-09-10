@@ -2,6 +2,7 @@ package com.samuel.todo_list.web;
 
 import com.samuel.todo_list.domain.entities.User;
 import com.samuel.todo_list.domain.service.TokenService;
+import com.samuel.todo_list.swaggerInterfaces.AuthSwagger;
 import com.samuel.todo_list.web.dto.AuthDto;
 import com.samuel.todo_list.web.dto.TokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController implements AuthSwagger {
 
   private final AuthenticationManager authenticationManager;
   private final TokenService tokenService;

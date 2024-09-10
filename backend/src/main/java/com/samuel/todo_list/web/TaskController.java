@@ -3,6 +3,7 @@ package com.samuel.todo_list.web;
 
 import com.samuel.todo_list.domain.entities.Task;
 import com.samuel.todo_list.domain.service.TasksService;
+import com.samuel.todo_list.swaggerInterfaces.TaskSwagger;
 import com.samuel.todo_list.web.dto.TaskDto;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/tasks")
-public class TaskController {
+public class TaskController implements TaskSwagger {
 
   private final TasksService tasksService;
 
