@@ -4,10 +4,11 @@ import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
 import { TaskType, UserType } from '../../types/types';
 
-export default function DeleteTaskButton({ setTasks, user, param = '',
+export default function DeleteTaskButton({ setTasks, user, disabled, param = '',
   children = '', textColor = 'white', background = false }: {
   setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>;
   user: UserType;
+  disabled: boolean;
   param?: string;
   children?: React.ReactNode;
   textColor?: string;
@@ -29,8 +30,9 @@ export default function DeleteTaskButton({ setTasks, user, param = '',
   return (
     <button
       className={ `text-center text-${textColor} 
-      ${background && 'bg-red-500'}  p-2 rounded-md` }
+      ${background && 'bg-red-500'}  p-2 rounded-md disabled:cursor-not-allowed` }
       onClick={ () => handleDeleteAllTasks() }
+      disabled={ disabled }
     >
       <Trash />
       {children}

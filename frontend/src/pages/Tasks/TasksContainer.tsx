@@ -17,6 +17,7 @@ export default function TasksContainer({ setTasks, tasks, user, taskStatus }:
           user={ user }
           param={ taskStatus }
           textColor="black"
+          disabled={ tasks.length === 0 }
         />
 
       </div>
