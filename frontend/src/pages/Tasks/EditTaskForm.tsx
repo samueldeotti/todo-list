@@ -3,6 +3,9 @@ import toast from 'react-hot-toast';
 import { X } from 'lucide-react';
 import { api } from '../../utils/apiService';
 import { StatusType, TaskType } from '../../types/types';
+import TaskTitleInput from '../../components/TaskInput/TaskTitleInput';
+import TaskDescriptionInput from '../../components/TaskInput/TaskDescriptionInput';
+import TaskStatusInput from '../../components/TaskInput/TaskStatusInput';
 
 export default function EditTaskForm({ task, setIsEditing, setTasks }
 : { task: TaskType, setIsEditing: React.Dispatch<React.SetStateAction<boolean>>,
@@ -33,31 +36,22 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
       onSubmit={ (e) => handleEditTask(e) }
       className="flex flex-col gap-2 relative"
     >
-      <X onClick={ () => setIsEditing(false) } className="absolute right-0 top-0 cursor-pointer" />
-      <input
-        className="bg-transparent p-2 rounded-md outline outline-2 focus:outline-black mt-8 "
-        type="text"
-        placeholder="Task title"
-        value={ title }
-        onChange={ (e) => setTitle(e.target.value) }
+      <X
+        onClick={ () => setIsEditing(false) }
+        className="absolute right-0 top-0 cursor-pointer"
       />
-      <textarea
-        className="bg-transparent p-2 rounded-md outline outline-2 focus:outline-black max-h-[120px]"
-        placeholder="Task description"
-        value={ description }
-        onChange={ (e) => setDescription(e.target.value) }
-      />
+      <TaskTitleInput value={ title } setValue={ setTitle } />
+
+      <TaskDescriptionInput value={ description } setValue={ setDescription } />
       <div className="flex w-full gap-2">
-        <select
-          onChange={ (e) => setStatus(e.target.value as StatusType) }
-          defaultValue={ task.status }
-          className="p-2 w-1/2 rounded-md"
+        <TaskStatusInput status={ task.status } setStatus={ setStatus } />
+        <button
+          type="submit"
+          className="w-1/2 text-whitebg-slate-900
+          rounded-md p-2 up font-bold disabled:cursor-not-allowed"
         >
-          <option value="not started">Not Started</option>
-          <option value="in progress">In Progress</option>
-          <option value="completed">Completed</option>
-        </select>
-        <button type="submit" className="w-1/2 text-white bg-slate-900 rounded-md p-2 up font-bold disabled:cursor-not-allowed">Change</button>
+          Change
+        </button>
 
       </div>
     </form>

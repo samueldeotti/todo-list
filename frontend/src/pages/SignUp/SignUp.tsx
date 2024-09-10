@@ -1,23 +1,17 @@
 /* eslint-disable react/jsx-no-bind */
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { UserData } from '../../components/UserForm/Form';
 import UserForm from '../../components/UserForm/UserForm';
 import { api } from '../../utils/apiService';
-import useAuth from '../../hooks/useAuth';
+import useRedirectIfAuthenticated from '../../hooks/useRedirectIfAuthenticated';
 
 export function SignUp() {
-  const { isAuthenticated } = useAuth();
+  useRedirectIfAuthenticated();
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/tasks');
-    }
-  }, [isAuthenticated, navigate]);
 
   async function handleSignup(event: FormEvent, userData: UserData) {
     event.preventDefault();

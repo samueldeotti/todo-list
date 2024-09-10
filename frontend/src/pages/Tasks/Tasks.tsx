@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
 import { api } from '../../utils/apiService';
-import useAuth from '../../hooks/useAuth';
 import AddTaskForm from './AddTaskForm';
 import TasksContainer from './TasksContainer';
 import DeleteTaskButton from './DeleteTaskButton';
@@ -9,8 +8,6 @@ import { TaskType, UserType } from '../../types/types';
 import Header from '../../components/Header/Header';
 
 export default function Tasks() {
-  useAuth();
-
   const [tasks, setTasks] = useState<TaskType[]>([]);
 
   const user:UserType = JSON.parse(localStorage.getItem('user') || '{}');
@@ -36,16 +33,21 @@ export default function Tasks() {
     <>
 
       <Header />
-      <div className="w-full text-white mt-6">
+      <div className="w-full text-white mt-2 md:max-w-[760px] lg:max-w-[1200px] m-auto">
 
-        <div className="px-4 sm:px-12 max-w-[700px] m-auto">
+        <div className="px-4 sm:px-12 m-auto">
           <AddTaskForm setTasks={ setTasks } user={ user } />
           <div className="flex justify-between mb-8 mt-4">
             <h1 className="text-3xl">All tasks</h1>
-            <DeleteTaskButton setTasks={ setTasks } user={ user } background />
+            <DeleteTaskButton
+              setTasks={ setTasks }
+              user={ user }
+              background
+              disabled={ tasks.length === 0 }
+            />
           </div>
           <div>
-            <div>
+            <div className="lg:flex md:gap-2 ">
 
               <TasksContainer
                 setTasks={ setTasks }

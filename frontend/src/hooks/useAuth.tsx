@@ -5,9 +5,12 @@ import { api } from '../utils/apiService';
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isMounted = true;
+
     const checkAuthStatus = async () => {
       console.log('Checking auth status');
 
@@ -17,6 +20,8 @@ const useAuth = () => {
         if (!token) {
           setIsAuthenticated(false);
           localStorage.removeItem('user');
+          delete api.defaults.headers.common.Authorization;
+          setLoading(false);
           return;
         }
 
@@ -31,25 +36,31 @@ const useAuth = () => {
         }
         localStorage.removeItem('token');
         setIsAuthenticated(false);
-        navigate('/signin');
       } catch (err) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        api.defaults.headers.common.Authorization = '';
-        setIsAuthenticated(false);
-        toast.error('Sessão expirada, faça login novamente');
+        if (isMounted) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          delete api.defaults.headers.common.Authorization;
+          setIsAuthenticated(false);
+          toast.error('Sessão expirada, faça login novamente');
+        }
 
-        navigate('/signin');
         setTimeout(() => {
           toast.dismiss();
         }, 1000);
+      } finally {
+        setLoading(false);
       }
     };
 
     checkAuthStatus();
+
+    return () => {
+      isMounted = false;
+    };
   }, [navigate]);
 
-  return { isAuthenticated };
+  return { isAuthenticated, loading };
 };
 
 export default useAuth;
