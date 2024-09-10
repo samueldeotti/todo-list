@@ -17,14 +17,18 @@ export default function TasksContainer({ setTasks, tasks, user, taskStatus }:
       </div>
       <div className="flex flex-col gap-4 ">
 
-        {tasks.map((task) => (
-          <div key={ task.id } className="ring-1 ring-[#f3f3f3] p-4 rounded-md">
-            <TaskItem
-              setTasks={ setTasks }
-              task={ task }
-            />
-          </div>
-        ))}
+        {tasks.length === 0 ? (
+          <p>No tasks</p>
+        ) : (
+          tasks.map((task) => (
+            <div key={ task.id } className="ring-1 ring-[#f3f3f3] p-4 rounded-md">
+              <TaskItem
+                setTasks={ setTasks }
+                task={ task }
+              />
+            </div>
+          ))
+        )}
 
       </div>
     </div>
