@@ -44,7 +44,7 @@ export default function TaskItem({ task, setTasks, completed }
           <h2 className={ `text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.title}</h2>
 
           <div className="flex items-center justify-between gap-4 ">
-            <p className={ `overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.description}</p>
+            <p className={ `overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.description || '...'}</p>
             <div className="flex items-center gap-3">
               <select
                 value={ task.status }

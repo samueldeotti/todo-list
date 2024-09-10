@@ -17,7 +17,7 @@ export function SignIn() {
     event.preventDefault();
     setLoading(true);
 
-    const toastId = toast.loading('Verificando dados...');
+    const toastId = toast.loading('Validating data...');
 
     // I put this in because I wanted to simulate what it would be like in production, but when I release it to production, remove it
     // I refer to setTimeOut in the following way:
@@ -36,7 +36,7 @@ export function SignIn() {
     } catch (error: any) {
       console.log(error);
       setTimeout(() => {
-        toast.error('Unvalid Data!');
+        toast.error('Invalid Credentials!');
       }, 1001);
     } finally {
       setTimeout(() => {

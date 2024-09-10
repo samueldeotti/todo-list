@@ -16,7 +16,7 @@ export function SignUp() {
   async function handleSignup(event: FormEvent, userData: UserData) {
     event.preventDefault();
     setLoading(true);
-    const toastId = toast.loading('Criando conta...');
+    const toastId = toast.loading('Creating account...');
 
     // I put this in, because I wanted to simulate what it would be like in production, but when I release it to production, remove it
     // I refer to setTimeOut in the following way:

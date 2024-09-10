@@ -70,12 +70,6 @@ export default function Tasks() {
                 taskStatus="completed"
               />
 
-              {/* <div>
-              <h2>{tasks[0]?.title}</h2>
-              <p>{tasks[0]?.description}</p>
-              <p>{tasks[0]?.status}</p>
-            </div> */}
-
             </div>
           </div>
         </div>

@@ -13,8 +13,8 @@ interface Props {
 export default function Input({ children, type, onChange, name, value, verifyValue }
 : Props) {
   const errors: any = {
-    username: 'Precisa de 3 caracteres ou mais',
-    password: 'Precisa de 4 caracteres ou mais',
+    username: 'Need 3 characters or more',
+    password: 'Need 4 characters or more',
   };
 
   const isValueValid = verifyValue(value);

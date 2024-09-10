@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
-import Input from '../Input/Input';
+import Input from './Input/Input';
 
 interface FormProps {
   loading: boolean;
