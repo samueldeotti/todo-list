@@ -13,7 +13,7 @@ interface Props {
 export default function Input({ children, type, onChange, name, value, verifyValue }
 : Props) {
   const errors: any = {
-    name: 'Precisa de 3 caracteres ou mais',
+    username: 'Precisa de 3 caracteres ou mais',
     password: 'Precisa de 4 caracteres ou mais',
   };
 
@@ -27,7 +27,7 @@ export default function Input({ children, type, onChange, name, value, verifyVal
   };
 
   return (
-    <label className="text-sm font-normal relative mb-2" htmlFor={ name }>
+    <label className="text-sm font-normal relative mb-1" htmlFor={ name }>
       <span
         className="after:content-['*'] after:ml-0.5 after:text-red-500
       block text-sm font-medium text-slate-700 md:text-sm lg:text-base"

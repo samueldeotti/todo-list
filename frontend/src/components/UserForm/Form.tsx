@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Loader, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import Input from '../Input/Input';
 
 interface FormProps {
@@ -33,7 +33,10 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
   const verifyPassword = (password: string) => password.length >= 4;
 
   return (
-    <form onSubmit={ (e) => handleSubmit(e, userData) } className="flex flex-col mt-2 w-5/6">
+    <form
+      onSubmit={ (e) => handleSubmit(e, userData) }
+      className="flex flex-col mt-2 w-5/6"
+    >
       <Input
         verifyValue={ verifyName }
         type="text"
@@ -57,7 +60,7 @@ export default function Form({ loading, handleSubmit, isSignup = false }: FormPr
         type="submit"
         disabled={ loading || !verifyPassword(userData.password)
           || (isSignup && !verifyName(userData.username)) }
-        className={ `p-6 bg-zinc-900 text-white hover:bg-zinc-900/90
+        className={ `p-4 bg-zinc-900 text-white hover:bg-zinc-900/90
           transition disabled:cursor-not-allowed 
            disabled:bg-zinc-700 mb-4 rounded-lg 
            ${loading && 'cursor-not-allowed'} md:text-lg` }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
-import { StatusType, TaskType } from './Tasks';
+import { StatusType, TaskType } from '../../types/types';
 
 export default function EditTaskForm({ task, setIsEditing, setTasks }
 : { task: TaskType, setIsEditing: React.Dispatch<React.SetStateAction<boolean>>,

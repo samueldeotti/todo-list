@@ -5,21 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import AddTaskForm from './AddTaskForm';
 import TasksContainer from './TasksContainer';
 import DeleteTaskButton from './DeleteTaskButton';
-
-export type UserType = {
-  id: string;
-  username: string;
-};
-
-export type StatusType = 'not started' | 'in progress' | 'completed';
-
-export type TaskType = {
-  id: string;
-  title: string;
-  description: string;
-  status: StatusType;
-  user: UserType;
-};
+import { TaskType, UserType } from '../../types/types';
 
 export default function Tasks() {
   useAuth();
@@ -46,13 +32,15 @@ export default function Tasks() {
   }, []);
 
   return (
-    <div className="w-full h-[100vh] bg-black text-white">
+    <div className="w-full text-white ">
 
       <div>
+        <AddTaskForm setTasks={ setTasks } user={ user } />
         <h1>All tasks</h1>
-        <DeleteTaskButton setTasks={ setTasks } user={ user } />
+        <DeleteTaskButton setTasks={ setTasks } user={ user }>
+          Delete all tasks
+        </DeleteTaskButton>
         <div>
-          <AddTaskForm setTasks={ setTasks } user={ user } />
           <div>
 
             <TasksContainer

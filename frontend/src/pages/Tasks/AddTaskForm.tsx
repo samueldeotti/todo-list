@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
-import { TaskType, UserType } from './Tasks';
+import { TaskType, UserType } from '../../types/types';
 
 export default function AddTaskForm({ setTasks, user }
 : { setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>, user: UserType }) {
@@ -27,22 +27,26 @@ export default function AddTaskForm({ setTasks, user }
   };
 
   return (
-    <form action="" onSubmit={ handleAddTask }>
+    <form action="" onSubmit={ handleAddTask } className="w-full flex flex-col p-4 gap-2">
       <input
-        className="bg-gray-800"
+        className="bg-gray-800 p-2 rounded-md"
         type="text"
         placeholder="Task title"
         value={ title }
         onChange={ (e) => setTitle(e.target.value) }
       />
-      <input
-        className="bg-gray-800"
-        type="text"
+      <textarea
+        className="bg-gray-800 p-2"
         placeholder="Task description"
         value={ description }
         onChange={ (e) => setDescription(e.target.value) }
       />
-      <button type="submit">Add</button>
+      <button
+        type="submit"
+        className="mt-2 w-full bg-slate-600 rounded-md p-2"
+      >
+        Add
+      </button>
     </form>
   );
 }

@@ -2,12 +2,13 @@ import { Trash } from 'lucide-react';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
-import { TaskType, UserType } from './Tasks';
+import { TaskType, UserType } from '../../types/types';
 
-export default function DeleteTaskButton({ setTasks, user, param = '' }: {
+export default function DeleteTaskButton({ setTasks, user, param = '', children = '' }: {
   setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>;
   user: UserType;
   param?: string;
+  children?: React.ReactNode;
 }) {
   const handleDeleteAllTasks = async () => {
     try {
@@ -27,7 +28,7 @@ export default function DeleteTaskButton({ setTasks, user, param = '' }: {
       onClick={ () => handleDeleteAllTasks() }
     >
       <Trash />
-      Delete all tasks
+      {children}
     </button>
   );
 }

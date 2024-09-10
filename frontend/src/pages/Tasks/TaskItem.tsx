@@ -1,9 +1,9 @@
 import { Edit, Trash } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { StatusType, TaskType } from './Tasks';
 import EditTaskForm from './EditTaskForm';
 import { api } from '../../utils/apiService';
+import { StatusType, TaskType } from '../../types/types';
 
 export default function TaskItem({ task, setTasks }
 : { task: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>> }) {
@@ -34,24 +34,31 @@ export default function TaskItem({ task, setTasks }
   };
 
   return (
-    <div>
+    <div className="w-full flex flex-col justify-between gap-2 px-2">
       {isEditing ? (
         <EditTaskForm task={ task } setIsEditing={ setIsEditing } setTasks={ setTasks } />
       ) : (
         <>
-          <h2>{task.title}</h2>
-          <p>{task.description}</p>
-          <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
-          <button onClick={ () => setIsEditing(true) }><Edit /></button>
-          <select
-            value={ task.status }
-            onChange={ (e) => handleChangeStatus(task, e.target.value as StatusType) }
-            className="bg-gray-800 text-white"
-          >
-            <option value="not started">Not Started</option>
-            <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
+
+          <h2 className="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{task.title}</h2>
+
+          <div className="flex items-center justify-between gap-4 ">
+            <p className="overflow-hidden text-ellipsis whitespace-nowrap">{task.description}</p>
+            <div className="flex items-center gap-3">
+              <select
+                value={ task.status }
+                onChange={ (e) => handleChangeStatus(task, e.target.value as StatusType) }
+                className="bg-gray-800 text-white h-6  rounded-sm"
+              >
+                <option value="not started">Not Started</option>
+                <option value="in progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+              <button onClick={ () => setIsEditing(true) }><Edit /></button>
+              <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
+            </div>
+
+          </div>
 
         </>
       )}
