@@ -52,13 +52,13 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
             .requestMatchers(HttpMethod.GET, "/auth/status").permitAll()
             .requestMatchers(HttpMethod.POST, "/users/create").permitAll()
+            .requestMatchers("/v3/api-docs/**","/v2/api-docs.yaml","/swagger-ui/**","/swagger-ui.html").permitAll()
             .anyRequest().authenticated()
         )
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 
-  // Método para configurar as regras de CORS
   @Bean
   public UrlBasedCorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config = new CorsConfiguration();

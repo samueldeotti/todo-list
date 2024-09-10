@@ -30,8 +30,7 @@ public class Task {
   @Column(name = "title", nullable = false)
   private String title;
 
-  @NotEmpty(message = "description is required")
-  @Column(name = "description", nullable = false)
+  @Column(name = "description")
   private String description;
 
   @NotEmpty(message = "status is required")
