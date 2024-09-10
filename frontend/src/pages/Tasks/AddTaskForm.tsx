@@ -27,23 +27,28 @@ export default function AddTaskForm({ setTasks, user }
   };
 
   return (
-    <form action="" onSubmit={ handleAddTask } className="w-full flex flex-col p-4 gap-2">
+    <form
+      action=""
+      onSubmit={ handleAddTask }
+      className="w-full flex flex-col py-4 gap-4"
+    >
       <input
-        className="bg-gray-800 p-2 rounded-md"
+        className="bg-transparent p-3 rounded-md outline outline-2 focus:outline-white"
         type="text"
         placeholder="Task title"
         value={ title }
         onChange={ (e) => setTitle(e.target.value) }
       />
       <textarea
-        className="bg-gray-800 p-2"
+        className="bg-transparent p-3 rounded-md outline outline-2 focus:outline-white max-h-[120px]"
         placeholder="Task description"
         value={ description }
         onChange={ (e) => setDescription(e.target.value) }
       />
       <button
         type="submit"
-        className="mt-2 w-full bg-slate-600 rounded-md p-2"
+        className="mt-2 w-full bg-slate-900 rounded-md p-3 up font-bold disabled:cursor-not-allowed"
+        disabled={ !title }
       >
         Add
       </button>

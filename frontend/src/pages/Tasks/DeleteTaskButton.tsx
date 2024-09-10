@@ -4,11 +4,14 @@ import toast from 'react-hot-toast';
 import { api } from '../../utils/apiService';
 import { TaskType, UserType } from '../../types/types';
 
-export default function DeleteTaskButton({ setTasks, user, param = '', children = '' }: {
+export default function DeleteTaskButton({ setTasks, user, param = '',
+  children = '', textColor = 'white', background = false }: {
   setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>;
   user: UserType;
   param?: string;
   children?: React.ReactNode;
+  textColor?: string;
+  background?: boolean;
 }) {
   const handleDeleteAllTasks = async () => {
     try {
@@ -25,6 +28,8 @@ export default function DeleteTaskButton({ setTasks, user, param = '', children 
 
   return (
     <button
+      className={ `text-center text-${textColor} 
+      ${background && 'bg-red-500'}  p-2 rounded-md` }
       onClick={ () => handleDeleteAllTasks() }
     >
       <Trash />

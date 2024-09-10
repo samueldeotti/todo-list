@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Edit, Trash } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -48,7 +49,7 @@ export default function TaskItem({ task, setTasks }
               <select
                 value={ task.status }
                 onChange={ (e) => handleChangeStatus(task, e.target.value as StatusType) }
-                className="bg-gray-800 text-white h-6  rounded-sm"
+                className="bg-gray-800 text-white h-6 rounded-sm"
               >
                 <option value="not started">Not Started</option>
                 <option value="in progress">In Progress</option>
@@ -57,7 +58,6 @@ export default function TaskItem({ task, setTasks }
               <button onClick={ () => setIsEditing(true) }><Edit /></button>
               <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
             </div>
-
           </div>
 
         </>
