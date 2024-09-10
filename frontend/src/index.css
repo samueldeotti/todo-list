@@ -18,4 +18,9 @@
 body {
   background-color: #242A45;
   font-family: 'Inter', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
+
+

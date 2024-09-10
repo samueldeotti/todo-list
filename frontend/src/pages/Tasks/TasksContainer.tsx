@@ -6,7 +6,7 @@ export default function TasksContainer({ setTasks, tasks, user, taskStatus }:
 { setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>,
   tasks: TaskType[], user: UserType, taskStatus: StatusType }) {
   return (
-    <div className="p-4 bg-white rounded-lg text-black mb-4 sm:min-w-[320px] sm:min-h-[200px] w-full">
+    <div className="p-4 bg-white rounded-lg text-black mb-4 sm:min-w-[320px] sm:min-h-[200px] h-fit w-full">
       <div className="flex items-center justify-between mb-4">
         <h2 className=" text-2xl my-auto italic underline underline-offset-2">
           {taskStatus.charAt(0).toUpperCase() + taskStatus.slice(1).toLowerCase()

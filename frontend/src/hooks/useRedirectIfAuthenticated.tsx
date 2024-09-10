@@ -17,7 +17,7 @@ const useRedirectIfAuthenticated = () => {
       try {
         const response = await api.post('/auth/status', token);
         if (response.status === 200) {
-          navigate('/tasks'); // Redireciona para /tasks se o token for válido
+          navigate('/tasks');
         }
       } catch {
         localStorage.removeItem('token');

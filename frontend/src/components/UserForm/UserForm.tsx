@@ -16,7 +16,7 @@ interface UserFormProps {
 export default function UserForm({ handleSubmit, loading, isSignup = false }
 : UserFormProps) {
   return (
-    <main className="flex w-5/6 max-w-[400px] bg-white px-6 pb-4 pt-10 rounded-2xl flex-col items-center gap-2 m-auto">
+    <main className="flex w-5/6 max-w-[400px] bg-white px-6 pb-4 pt-10 rounded-2xl flex-col items-center gap-2 mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <h1 className="text-xl font-semibold md:text-2xl lg:text-3xl">{isSignup ? 'Criar conta' : 'Acesse sua conta'}</h1>
 
       <Form loading={ loading } isSignup={ isSignup } handleSubmit={ handleSubmit } />
