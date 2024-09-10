@@ -6,8 +6,8 @@ import EditTaskForm from './EditTaskForm';
 import { api } from '../../utils/apiService';
 import { StatusType, TaskType } from '../../types/types';
 
-export default function TaskItem({ task, setTasks }
-: { task: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>> }) {
+export default function TaskItem({ task, setTasks, completed }
+: { task: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>, completed: boolean }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleDeleteTask = async (id: string) => {
@@ -41,10 +41,10 @@ export default function TaskItem({ task, setTasks }
       ) : (
         <>
 
-          <h2 className="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{task.title}</h2>
+          <h2 className={ `text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.title}</h2>
 
           <div className="flex items-center justify-between gap-4 ">
-            <p className="overflow-hidden text-ellipsis whitespace-nowrap">{task.description}</p>
+            <p className={ `overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.description}</p>
             <div className="flex items-center gap-3">
               <select
                 value={ task.status }

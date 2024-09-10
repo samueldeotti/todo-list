@@ -38,7 +38,7 @@ export default function Tasks() {
       <Header />
       <div className="w-full text-white mt-6">
 
-        <div className="px-4 ">
+        <div className="px-4 sm:px-12 max-w-[700px] m-auto">
           <AddTaskForm setTasks={ setTasks } user={ user } />
           <div className="flex justify-between mb-8 mt-4">
             <h1 className="text-3xl">All tasks</h1>
