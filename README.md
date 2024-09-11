@@ -1,4 +1,4 @@
-# Fullstack Project - Samuel Deotti
+# Todo List Fullstack Application
 
 This project aims to develop a fullstack application for a todo list platform. Users can login, add, view, edit, and remove a task, from their list. The application includes both a front-end and a back-end, with API for user and tasks management.
 
