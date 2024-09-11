@@ -12,8 +12,7 @@ export default function TasksContainer({ setTasks, tasks, user, taskStatus }:
     >
       <div className="flex items-center justify-between mb-4">
         <h2 className=" text-2xl my-auto italic underline underline-offset-2">
-          {taskStatus.charAt(0).toUpperCase() + taskStatus.slice(1).toLowerCase()
-        ?? ''}
+          {taskStatus.charAt(0).toUpperCase() + taskStatus.slice(1).toLowerCase()}
         </h2>
         <DeleteTaskButton
           setTasks={ setTasks }
