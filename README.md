@@ -42,7 +42,7 @@ Additionally, **Docker** was used for containerization, making the deployment pr
 
 3. Build and Run the Docker Compose services:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 
 
