@@ -3,7 +3,7 @@ export default function TaskTitleInput({ value, setValue }
   return (
     <input
       className="bg-transparent p-2
-      rounded-md outline outline-2 focus:outline-black mt-8 "
+      rounded-md outline outline-2 focus:outline-black "
       type="text"
       placeholder="Task title"
       value={ value }

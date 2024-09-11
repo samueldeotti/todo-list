@@ -33,7 +33,10 @@ export default function Tasks() {
     <>
 
       <Header />
-      <div className="w-full text-white mt-2 md:max-w-[760px] lg:max-w-[1200px] m-auto">
+      <div
+        className="w-full text-white mt-2
+      md:max-w-[760px] lg:max-w-[1200px] m-auto sm:mt-8"
+      >
 
         <div className="px-4 sm:px-12 m-auto">
           <AddTaskForm setTasks={ setTasks } user={ user } />

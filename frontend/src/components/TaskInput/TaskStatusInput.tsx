@@ -2,7 +2,9 @@ import React from 'react';
 import { StatusType } from '../../types/types';
 
 export default function TaskStatusInput({ status, setStatus }
-: { status: StatusType, setStatus: React.Dispatch<React.SetStateAction<StatusType>> }) {
+: { status: StatusType,
+  setStatus: React.Dispatch<React.SetStateAction<StatusType>>
+  | ((value: StatusType) => void) }) {
   return (
     <select
       onChange={ (e) => setStatus(e.target.value as StatusType) }

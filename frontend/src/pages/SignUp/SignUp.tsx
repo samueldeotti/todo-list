@@ -32,10 +32,10 @@ export function SignUp() {
       }, 1500);
     } catch (error: any) {
       setTimeout(() => {
+        toast.error('Something went wrong!');
         if (error.response.status === 409) {
           toast.error('Username already exists!');
         }
-        toast.error('Something went wrong!');
       }, 1001);
     } finally {
       setTimeout(() => {

@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-max-depth */
 /* eslint-disable max-len */
 import { Edit, Trash } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import EditTaskForm from './EditTaskForm';
 import { api } from '../../utils/apiService';
-import { StatusType, TaskType } from '../../types/types';
+import { TaskType } from '../../types/types';
 
 export default function TaskItem({ task, setTasks, completed }
 : { task: TaskType, setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>, completed: boolean }) {
@@ -21,47 +22,31 @@ export default function TaskItem({ task, setTasks, completed }
     }
   };
 
-  const handleChangeStatus = async (newTask: TaskType, newStatus: StatusType) => {
-    try {
-      await api.patch(`tasks/update/${newTask.id}`, { ...newTask, status: newStatus });
-
-      setTasks((prevTasks) => prevTasks
-        .map((t) => (t.id === newTask.id ? { ...t, status: newStatus } : t)));
-      toast.success('Task status updated');
-    } catch (error) {
-      console.error(error);
-      toast.error('Error updating task status');
-    }
+  const handleOpenEditModal = () => {
+    setIsEditing(true);
   };
 
   return (
-    <div className="w-full flex flex-col justify-between gap-2 px-2">
-      {isEditing ? (
-        <EditTaskForm task={ task } setIsEditing={ setIsEditing } setTasks={ setTasks } />
-      ) : (
-        <>
+    <>
+      <div className="w-full flex flex-col justify-between gap-4 px-2 cursor-pointer">
 
+        <div className="flex justify-between gap-2 items-center">
           <h2 className={ `text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.title}</h2>
-
-          <div className="flex items-center justify-between gap-4 ">
-            <p className={ `overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.description || '...'}</p>
-            <div className="flex items-center gap-3">
-              <select
-                value={ task.status }
-                onChange={ (e) => handleChangeStatus(task, e.target.value as StatusType) }
-                className="bg-gray-800 text-white h-6 rounded-sm"
-              >
-                <option value="not started">Not Started</option>
-                <option value="in progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </select>
-              <button onClick={ () => setIsEditing(true) }><Edit /></button>
-              <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
-            </div>
+          <div className="flex gap-4">
+            <button onClick={ handleOpenEditModal }><Edit /></button>
+            <button onClick={ () => handleDeleteTask(task.id) }><Trash /></button>
           </div>
+        </div>
 
-        </>
+        <p className={ `overflow-hidden text-ellipsis whitespace-nowrap ${completed && 'line-through'}` }>{task.description || '...'}</p>
+
+      </div>
+      {isEditing && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <EditTaskForm task={ task } setIsEditing={ setIsEditing } setTasks={ setTasks } />
+        </div>
       )}
-    </div>
+    </>
+
   );
 }

@@ -8,7 +8,7 @@ export default function TasksContainer({ setTasks, tasks, user, taskStatus }:
   return (
     <div
       className="p-4 bg-white
-    rounded-lg text-black mb-4 sm:min-w-[320px] sm:min-h-[188px] h-fit w-full"
+    rounded-lg text-black mb-4 sm:min-w-[320px] sm:min-h-[200px] h-fit w-full"
     >
       <div className="flex items-center justify-between mb-4">
         <h2 className=" text-2xl my-auto italic underline underline-offset-2">
