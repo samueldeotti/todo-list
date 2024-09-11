@@ -73,3 +73,13 @@ To stop the application, press `Ctrl + C` in the terminal where Docker Compose i
 
 - For documentation on the User and Task Management API, navigate to [Documentation](http://localhost:8080/swagger-ui/index.html#/) in your browser.
 
+#### Notes
+
+- If you are on Windows and encountering an error like: /bin/sh: 1: ./mvnw: not found, when trying to build the container, read this https://github.com/docker/docs/issues/13930,You can open the project in VS Code and change the line endings from CRLF to LF as follows:
+1. Find the mvnw file in the backend folder
+2. Open it and change the line endings from CRLF to LF.
+3. Run docker compose up --build
+- ![image](https://github.com/user-attachments/assets/df2117f0-7706-4f8c-a3bf-65376c8c1b69)
+
+
+
