@@ -35,7 +35,6 @@ export function SignUp() {
         if (error.response.status === 409) {
           toast.error('Username already exists!');
         }
-        console.log(error);
         toast.error('Something went wrong!');
       }, 1001);
     } finally {

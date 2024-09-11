@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { X } from 'lucide-react';
 import { api } from '../../utils/apiService';
-import { StatusType, TaskType } from '../../types/types';
+import { TaskType } from '../../types/types';
 import TaskTitleInput from '../../components/TaskInput/TaskTitleInput';
 import TaskDescriptionInput from '../../components/TaskInput/TaskDescriptionInput';
 import TaskStatusInput from '../../components/TaskInput/TaskStatusInput';
@@ -15,7 +15,6 @@ export default function EditTaskForm({ task, setIsEditing, setTasks }
   const [status, setStatus] = useState(task.status);
 
   const handleEditTask = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('task', task);
     e.preventDefault();
     try {
       await api.patch(`tasks/update/${task.id}`, { ...task, title, description, status });

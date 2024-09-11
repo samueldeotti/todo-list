@@ -19,7 +19,7 @@ export function SignIn() {
 
     const toastId = toast.loading('Validating data...');
 
-    // I put this in because I wanted to simulate what it would be like in production, but when I release it to production, remove it
+    // I put this in because I wanted to simulate what it would be like in production, and see the toasts, but when release it to production, remove it
     // I refer to setTimeOut in the following way:
 
     try {
@@ -34,7 +34,6 @@ export function SignIn() {
         navigate('/tasks');
       }, 1001);
     } catch (error: any) {
-      console.log(error);
       setTimeout(() => {
         toast.error('Invalid Credentials!');
       }, 1001);
