@@ -44,6 +44,7 @@ Additionally, **Docker** was used for containerization, making the deployment pr
     ```bash
     docker compose up --build
     ```
+    Note that the backend might crash sometimes while waiting for the database to become available. Please wait stabilize and connect successfully.
 
 
 6. Wait for a new tab to open in your browser, or open it manually. The application usually runs on port 3000, but it may open on a different port. If you encounter issues, check the terminal for the specified port.
