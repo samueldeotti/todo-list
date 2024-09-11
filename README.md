@@ -1,6 +1,6 @@
 # Fullstack Project - Samuel Deotti
 
-This project aims to develop a fullstack application for a todo list platform. Users can login, add, and view, edit, and remove, from the list. The application includes both a front-end and a back-end, with API for user and tasks management.
+This project aims to develop a fullstack application for a todo list platform. Users can login, add, view, edit, and remove a task, from their list. The application includes both a front-end and a back-end, with API for user and tasks management.
 
 ## Technologies Used
 
@@ -24,68 +24,20 @@ Additionally, **Docker** was used for containerization, making the deployment pr
 
 ## Frontend
 
-### How to Build and Run the Frontend Application
+### How to Build and Run the Application
 
 1. Clone the project from GitHub:
     ```bash
-    git clone https://github.com/bc-fullstack-04/samuel-deotti-frontend.git
+    git clone https://github.com/samueldeotti/todo-list.git
     ```
    or
     ```bash
-    git clone git@github.com:bc-fullstack-04/samuel-deotti-frontend.git
+    git clone git@github.com:samueldeotti/todo-list.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd samuel-deotti-frontend
-    ```
-
-3. Start the Docker Compose services:
-    ```bash
-    docker compose up
-    ```
-
-4. In another terminal tab, install the dependencies:
-    ```bash
-    npm install
-    ```
-
-5. Start the development server:
-    ```bash
-    npm run dev
-    ```
-
-6. Wait for a new tab to open in your browser, or open it manually. The application usually runs on port 5173, but it may open on a different port. If you encounter issues, check the terminal for the specified port.
-    ```bash
-    http://localhost:5173/
-    ```
-
-### How to Stop the Frontend Application
-
-To stop the application, press `Ctrl + C` in the terminal where Docker Compose and the development server are running.
-
-### Frontend Routes
-
-- /signin: `User signin page`
-- /signup: `User signup page`
-- /tasks: `Dashboard for adding, viewing, editing, and removing tasks`
-
-## Backend
-
-### How to Build and Run the Backend Application
-
-1. Clone the project from GitHub:
-    ```bash
-    git clone https://github.com/bc-fullstack-04/samuel-deotti-backend.git
-    ```
-   or
-    ```bash
-    git clone git@github.com:bc-fullstack-04/samuel-deotti-backend.git
-    ```
-
-2. Navigate to the project directory:
-    ```bash
-    cd samuel-deotti-backend
+    cd todo-list
     ```
 
 3. Build and Run the Docker Compose services:
@@ -93,17 +45,29 @@ To stop the application, press `Ctrl + C` in the terminal where Docker Compose a
     docker-compose up --build
     ```
 
-### How to Stop the Backend Application
+
+6. Wait for a new tab to open in your browser, or open it manually. The application usually runs on port 3000, but it may open on a different port. If you encounter issues, check the terminal for the specified port.
+    ```bash
+    http://localhost:3000/
+    ```
+
+### How to Stop the Application
 
 To stop the application, press `Ctrl + C` in the terminal where Docker Compose is running, or run the following command in the project root directory:
     ```bash
     docker-compose down
     ```
 
+### Frontend Routes
+
+- /signin: `User signin page`
+- /signup: `User signup page`
+- /tasks: `Dashboard for adding, viewing, editing, and removing tasks`
+
 ### Backend Ports
 
 - User Management API: `8080`
-- PostgreSQL: `3306`
+- MySQL: `3306`
 
 ### API Documentation
 

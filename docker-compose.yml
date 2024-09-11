@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  database:
+    container_name: db
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
   backend:
     container_name: app
     build:
@@ -26,11 +34,3 @@ services:
     depends_on:
       - backend
 
-  database:
-    container_name: db
-    image: mysql:latest
-    restart: always
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
